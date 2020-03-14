@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendLogin } from "../../store/user/action";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import { InputLabel, Input } from "@material-ui/core";
 
 const LoginContainer = () => {
   const dispatch = useDispatch();
@@ -39,23 +42,27 @@ const LoginContainer = () => {
     <div>
       <h2>Please Login here!</h2>
       <form onSubmit={handleSubmit}>
-        <label>EMAIL*</label>
-        <input
-          type="email"
-          name="email"
-          value={setLoginData.email}
-          placeholder="Your email"
-          onChange={handleChange}
-        />
-        <label>PASSWORD*</label>
-        <input
-          type="text"
-          name="password"
-          value={setLoginData.password}
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
+        <FormControl>
+          <InputLabel>EMAIL*</InputLabel>
+          <Input
+            type="email"
+            name="email"
+            value={loginData.email}
+            placeholder="Your email"
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel>PASSWORD*</InputLabel>
+          <Input
+            type="text"
+            name="password"
+            value={loginData.password}
+            placeholder="Password"
+            onChange={handleChange}
+          />
+        </FormControl>
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   );

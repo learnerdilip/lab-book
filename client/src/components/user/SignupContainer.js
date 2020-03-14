@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { sendSignup } from "../../store/user/action";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import { InputLabel, Input } from "@material-ui/core";
 
 const SignupContainer = () => {
   const dispatch = useDispatch();
@@ -45,31 +48,43 @@ const SignupContainer = () => {
     <div>
       <h2>Please SignUp here!</h2>
       <form onSubmit={handleSubmit}>
-        <label>EMAIL</label>
-        <input
-          type="email"
-          name="email"
-          value={signupData.email}
-          placeholder="Your email"
-          onChange={handleChange}
-        />{" "}
-        <label>PASSWORD</label>
-        <input
-          type="text"
-          name="password"
-          value={signupData.password}
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <label>NAME</label>
-        <input
-          type="text"
-          name="name"
-          value={signupData.name}
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
+        <FormControl>
+          <InputLabel>EMAIL*</InputLabel>
+          <Input
+            label="Standard"
+            type="email"
+            name="email"
+            value={signupData.email}
+            placeholder="Your email"
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel>PASSWORD*</InputLabel>
+          <Input
+            label="Standard"
+            type="text"
+            name="password"
+            value={signupData.password}
+            placeholder="Password"
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel>NAME</InputLabel>
+          <Input
+            label="Standard"
+            type="text"
+            name="name"
+            value={signupData.name}
+            placeholder="Name"
+            onChange={handleChange}
+          />
+        </FormControl>
+
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
