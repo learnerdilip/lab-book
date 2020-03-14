@@ -10,15 +10,12 @@ import Typography from "@material-ui/core/Typography";
 export default function HomePage() {
   const useStyles = makeStyles({
     root: {
-      minWidth: 275
-    },
-    bullet: {
-      display: "inline-block",
-      margin: "0 2px",
-      transform: "scale(0.8)"
+      minWidth: 275,
+      maxWidth: "40%",
+      height: "50vh"
     },
     title: {
-      fontSize: 14
+      fontSize: 20
     },
     pos: {
       marginBottom: 12
@@ -29,7 +26,7 @@ export default function HomePage() {
   // const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <div>
+    <div id="homecategories">
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography
@@ -39,13 +36,32 @@ export default function HomePage() {
           >
             Your notes
           </Typography>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h2" component="h2">
             EXPERIMENT PLANNER
           </Typography>
         </CardContent>
         <CardActions>
           <Button variant="contained" color="primary" size="small">
-            PLAN
+            I HAVE AN IDEA
+          </Button>
+        </CardActions>
+      </Card>
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Electronic Lab Book
+          </Typography>
+          <Typography variant="h2" component="h2">
+            EXPERIMENTS WORK BOOK
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button variant="contained" color="primary" size="small">
+            START LOGGING
           </Button>
         </CardActions>
       </Card>
