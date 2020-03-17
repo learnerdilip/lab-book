@@ -6,6 +6,8 @@ const databaseUrl =
 
 const db = new Sequelize(databaseUrl);
 
-db.sync().then(() => console.log(`the DIGITAL LAB BOOK is now connected`));
+db.sync({ force: true }).then(() =>
+  console.log(`the DIGITAL LAB BOOK is now connected`)
+);
 
 module.exports = db;
