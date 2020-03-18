@@ -6,6 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const useStyles = makeStyles({
@@ -27,7 +28,7 @@ export default function HomePage() {
 
   return (
     <div id="homecategories">
-      <Card className={classes.root} variant="outlined">
+      <Card id="plannercard" className={classes.root} variant="outlined">
         <CardContent>
           <Typography
             className={classes.title}
@@ -37,26 +38,32 @@ export default function HomePage() {
             Your notes
           </Typography>
           <Typography variant="h2" component="h2">
-            EXPERIMENT PLANNER
+            Experiment Planner
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="primary" size="small">
-            I HAVE AN IDEA
-          </Button>
+          <Link to="/notes">
+            <Button variant="contained" color="primary" size="small">
+              I HAVE AN IDEA
+            </Button>
+          </Link>
         </CardActions>
       </Card>
-      <Card className={classes.root} variant="outlined">
+      <Card
+        id="experimentloggingcard"
+        className={classes.root}
+        variant="outlined"
+      >
         <CardContent>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           >
-            Electronic Lab Book
+            Experiments Log
           </Typography>
           <Typography variant="h2" component="h2">
-            EXPERIMENTS WORK BOOK
+            Electronic Lab Book
           </Typography>
         </CardContent>
         <CardActions>
