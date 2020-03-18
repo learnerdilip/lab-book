@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  Button,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
 
 export default function ToDoForm() {
   const [text, setText] = useState("");
@@ -17,12 +25,16 @@ export default function ToDoForm() {
 
   return (
     <div>
-      {notes.map(note => (
-        <div id="idealine">
-          <p>{note}</p>
-          <p>{"date"}</p>
-        </div>
-      ))}
+      <List>
+        {notes.map(note => (
+          <ListItem>
+            <ListItemText>
+              {note} <div>{"date"}</div>
+            </ListItemText>
+          </ListItem>
+        ))}
+      </List>
+
       <form onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel>ENTER YOUR IDEAS</InputLabel>

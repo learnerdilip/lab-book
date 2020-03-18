@@ -11,21 +11,50 @@ body {
 .MuiPaper-root.MuiCard-root.makeStyles-root-124.MuiPaper-outlined.MuiPaper-rounded {
   margin-top: 4rem;
   box-shadow: grey 0px -1px 7px 0px;
+  height: 50vh;
+  max-width: 45%;
+  min-width: 275px;
 }
 
 #idealine {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   border: gray solid 2px;
   border-radius: 1rem;
   padding: 0rem 1rem;
   font-style: italic;
   background-color: #3f51b5;
-  color: whitesmoke;
+  color: whitesmoke; */
 }
 
 div#plannercard {
-  background-image: url("https://images-na.ssl-images-amazon.com/images/I/71V-ouaMRYL._AC_SL1500_.jpg");
+  background-image: url("https://www.monsterinsights.com/wp-content/uploads/2018/04/Google-Experiments-for-Growing-Your-eCommerce-Business.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  color: antiquewhite;
+}
+
+#experimentloggingcard {
+  background-image: url("https://previews.123rf.com/images/kwanchai123rf/kwanchai123rf1803/kwanchai123rf180300004/96732231-science-laboratory-test-tubes-lab-equipment-for-research-new-medical.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.MuiTypography-colorTextSecondary {
+  color: #e0e0e0;
+}
+
+input.MuiInputBase-input.MuiInput-input {
+  width: 70vw;
+}
+
+.MuiListItemText-root {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: #1822a229;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-style: italic;
 }

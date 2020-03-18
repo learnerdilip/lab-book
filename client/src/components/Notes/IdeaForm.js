@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FormControl, InputLabel, Input, Button } from "@material-ui/core";
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  Button,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
 
 export default function IdeaForm() {
   const [text, setText] = useState("");
@@ -17,12 +25,15 @@ export default function IdeaForm() {
 
   return (
     <div>
-      {notes.map(note => (
-        <div id="idealine">
-          <p>{note}</p>
-          <p>{"date"}</p>
-        </div>
-      ))}
+      <List>
+        {notes.map(note => (
+          <ListItem button>
+            <ListItemText>
+              {note} <div>{"date"}</div>
+            </ListItemText>
+          </ListItem>
+        ))}
+      </List>
       <form onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel>ENTER YOUR IDEAS</InputLabel>
@@ -35,7 +46,10 @@ export default function IdeaForm() {
             value={text}
           />
         </FormControl>
-        <Button type="submit">SUBMIT</Button>
+
+        <Button variant="contained" color="primary" type="submit">
+          SUBMIT
+        </Button>
       </form>
     </div>
   );
