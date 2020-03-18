@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import LoginContainer from "./components/user/LoginContainer";
 import SignupContainer from "./components/user/SignupContainer";
 import Header from "./components/Header";
+import NotesContainer from "./components/Notes/NotesContainer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
+        <Route exact path="/notes" component={NotesContainer} />
       </Switch>
     </Provider>
   );
