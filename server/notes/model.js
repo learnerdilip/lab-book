@@ -7,6 +7,11 @@ const NoteModel = mongoose.model(
       type: String,
       required: true
     },
+    creationDate: {
+      type: Date,
+      require: true,
+      default: Date.now
+    },
     text_cat: {
       type: String,
       required: false

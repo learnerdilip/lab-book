@@ -10,6 +10,7 @@ router.post("/notes", async (req, res, next) => {
       text_cat: req.body.category
     });
     console.log("you tried to make a note", makeNote);
+    res.send(makeNote);
   } catch {
     error => next(console.error(error));
   }
