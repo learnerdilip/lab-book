@@ -2,7 +2,6 @@ const { Router } = require("express");
 const User = require("./model");
 const bcrypt = require("bcrypt");
 const { toJWT } = require("../auth/jwt");
-// const sendMail = require("../sendMail");
 
 const router = new Router();
 
@@ -34,7 +33,7 @@ router.post("/login", async (request, response) => {
   console.log(request.body);
 
   const user = await User.findOne({ email: request.body.email });
-  console.log("---the found user----", user);
+  // console.log("---the found user----", user);
 
   const passwordValid = bcrypt.compareSync(
     request.body.password,
