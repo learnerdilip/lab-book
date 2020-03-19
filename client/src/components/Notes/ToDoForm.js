@@ -33,23 +33,25 @@ export default function ToDoForm() {
   return (
     <div>
       <List>
-        {state.noteState.notes
-          .filter(item => item.text_cat === "todo")
-          .map(note => (
-            <ListItem>
-              <ListItemText>
-                {note.text}{" "}
-                <div>
-                  {moment(note.creationDate).format("MMMM Do YYYY, hA")}
-                </div>
-              </ListItemText>
-            </ListItem>
-          ))}
+        {!state.noteState.notes && <div>Loading...</div>}
+        {state.noteState.notes &&
+          state.noteState.notes
+            .filter(item => item.text_cat === "todo")
+            .map(note => (
+              <ListItem>
+                <ListItemText>
+                  {note.text}{" "}
+                  <div>
+                    {moment(note.creationDate).format("MMMM Do YYYY, hA")}
+                  </div>
+                </ListItemText>
+              </ListItem>
+            ))}
       </List>
 
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <InputLabel>ENTER YOUR IDEAS</InputLabel>
+          <InputLabel>Add an item to your TO DO list</InputLabel>
           <Input
             label="Standard"
             type="text"

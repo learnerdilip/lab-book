@@ -33,22 +33,24 @@ export default function IdeaForm() {
   return (
     <div>
       <List>
-        {state.noteState.notes
-          .filter(item => item.text_cat === "idea")
-          .map(note => (
-            <ListItem button>
-              <ListItemText>
-                {note.text}{" "}
-                <div>
-                  {moment(note.creationDate).format("MMMM Do YYYY, hA")}
-                </div>
-              </ListItemText>
-            </ListItem>
-          ))}
+        {!state.noteState.notes && <div>Loading...</div>}
+        {state.noteState.notes &&
+          state.noteState.notes
+            .filter(item => item.text_cat === "idea")
+            .map(note => (
+              <ListItem button>
+                <ListItemText>
+                  {note.text}{" "}
+                  <div>
+                    {moment(note.creationDate).format("MMMM Do YYYY, hA")}
+                  </div>
+                </ListItemText>
+              </ListItem>
+            ))}
       </List>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <InputLabel>ENTER YOUR IDEAS</InputLabel>
+          <InputLabel>Save this Idea for later...</InputLabel>
           <Input
             label="Standard"
             type="text"

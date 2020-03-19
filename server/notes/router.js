@@ -11,16 +11,15 @@ router.post("/notes", auth, async (req, res, next) => {
       text_cat: req.body.textType,
       user_id: req.user._id
     });
-    console.log("note madein mongoDB", makeNote);
     res.send(makeNote);
   } catch {
     error => next(console.error(error));
   }
 });
 
-router.get("/notes", async (req, res, next) => {
+router.get("/notes", auth, async (req, res, next) => {
   try {
-    const notesList = await Note.find();
+    const notesList = await Note.find({ user_id: req.user._id });
     res.send(notesList);
   } catch {
     error => next(console.error(error));

@@ -14,7 +14,7 @@ router.post("/signup", (request, response, next) => {
   }
   const hashedPassword = bcrypt.hashSync(request.body.password, 10); //hash password using bcrypt
   const user = { ...request.body, password: hashedPassword };
-  console.log("---USER CREATION working! ", user);
+  // console.log("---USER CREATION working! ", user);
 
   User.create(user)
     .then(user => {
@@ -30,11 +30,7 @@ router.post("/signup", (request, response, next) => {
 });
 
 router.post("/login", async (request, response) => {
-  console.log(request.body);
-
   const user = await User.findOne({ email: request.body.email });
-  // console.log("---the found user----", user);
-
   const passwordValid = bcrypt.compareSync(
     request.body.password,
     user.password

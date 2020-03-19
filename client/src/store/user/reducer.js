@@ -20,7 +20,7 @@ export default function userReducer(state = initialState, action = {}) {
       return { ...state, newUser: true };
     }
     case "CLEAR_USER_DATA": {
-      return { ...initialState };
+      return initialState;
     }
     default: {
       return { ...state };

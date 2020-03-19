@@ -6,8 +6,15 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useDispatch } from "react-redux";
 
 export default function Header() {
+  const dispatch = useDispatch();
+
+  const logoutuser = () => {
+    dispatch({ type: 'CLEAR_USER_DATA' });
+  };
+
   return (
     <AppBar position="static">
       <Toolbar id="appheaderbar">
@@ -26,6 +33,9 @@ export default function Header() {
           </a>
         </Typography>
         <div id="loginsignupbutton">
+          <Button onClick={logoutuser} variant="contained" color="default">
+            <Link to="/">logout</Link>
+          </Button>
           <Button variant="contained" color="default">
             <Link to="/login">Login</Link>
           </Button>
