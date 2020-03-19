@@ -58,3 +58,8 @@ input.MuiInputBase-input.MuiInput-input {
   border-radius: 0.5rem;
   font-style: italic;
 }
+
+#appheaderbar {
+  display: flex;
+  justify-content: space-between;
+}

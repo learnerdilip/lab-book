@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import {
   FormControl,
   InputLabel,
@@ -37,7 +38,10 @@ export default function ToDoForm() {
           .map(note => (
             <ListItem>
               <ListItemText>
-                {note.text} <div>{"date"}</div>
+                {note.text}{" "}
+                <div>
+                  {moment(note.creationDate).format("MMMM Do YYYY, hA")}
+                </div>
               </ListItemText>
             </ListItem>
           ))}
