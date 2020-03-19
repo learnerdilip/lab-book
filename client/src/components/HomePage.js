@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -33,6 +33,9 @@ export default function HomePage() {
 
   const classes = useStyles();
   // const bull = <span className={classes.bullet}>•</span>;
+
+  // const state = useSelector(reduxState => reduxState.notes.notes);
+  // console.log("--the state in notes---", state);
 
   return (
     <div id="homecategories">

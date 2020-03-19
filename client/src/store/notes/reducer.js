@@ -8,6 +8,9 @@ const notesReducer = (state = initialState, action = {}) => {
     case "NOTE_POSTED": {
       return { ...state, notes: [...state.notes, action.payload] };
     }
+    case "CLEAR_USER_DATA": {
+      return initialState;
+    }
     default: {
       return { ...state };
     }
