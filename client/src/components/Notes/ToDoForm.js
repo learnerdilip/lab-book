@@ -49,7 +49,7 @@ export default function ToDoForm() {
 
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <InputLabel>ENTER YOUR IDEAS</InputLabel>
+          <InputLabel>Add an item to your TO DO list</InputLabel>
           <Input
             label="Standard"
             type="text"

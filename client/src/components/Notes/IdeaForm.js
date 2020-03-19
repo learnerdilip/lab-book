@@ -48,7 +48,7 @@ export default function IdeaForm() {
       </List>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <InputLabel>ENTER YOUR IDEAS</InputLabel>
+          <InputLabel>Save this Idea for later...</InputLabel>
           <Input
             label="Standard"
             type="text"
