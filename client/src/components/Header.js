@@ -6,14 +6,15 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Header() {
   const dispatch = useDispatch();
 
   const logoutuser = () => {
-    dispatch({ type: 'CLEAR_USER_DATA' });
+    dispatch({ type: "CLEAR_USER_DATA" });
   };
+  const state = useSelector(reduxstate => reduxstate);
 
   return (
     <AppBar position="static">
@@ -26,6 +27,9 @@ export default function Header() {
         >
           <MenuIcon />
         </IconButton>
+        <Typography variant="h6">
+          {state.user.name && `Welcome scientist ${state.user.name}!`}
+        </Typography>
 
         <Typography variant="h6">
           <a style={{ textDecoration: "none", color: "White" }} href="/">
