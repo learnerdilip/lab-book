@@ -15,7 +15,8 @@ const NoteModel = mongoose.model(
     text_cat: {
       type: String,
       required: false
-    }
+    },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
   })
 );
 
