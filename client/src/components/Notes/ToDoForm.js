@@ -8,10 +8,16 @@ import {
   ListItem,
   ListItemText
 } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { noteRegister } from "../../store/notes/actions";
 
 export default function ToDoForm() {
+  const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const [notes, setNotes] = useState([]);
+
+  const state = useSelector(reduxState => ({
+    noteState: reduxState.notes
+  }));
 
   const handleChange = e => {
     setText(e.target.value);
@@ -19,20 +25,22 @@ export default function ToDoForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setNotes(prevState => [...prevState, text]);
+    dispatch(noteRegister({ text, textType: "todo" }));
     setText("");
   };
 
   return (
     <div>
       <List>
-        {notes.map(note => (
-          <ListItem>
-            <ListItemText>
-              {note} <div>{"date"}</div>
-            </ListItemText>
-          </ListItem>
-        ))}
+        {state.noteState.notes
+          .filter(item => item.text_cat === "todo")
+          .map(note => (
+            <ListItem>
+              <ListItemText>
+                {note.text} <div>{"date"}</div>
+              </ListItemText>
+            </ListItem>
+          ))}
       </List>
 
       <form onSubmit={handleSubmit}>

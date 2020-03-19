@@ -1,5 +1,6 @@
 import React from "react";
 // import Paper from "@material-ui/core/Paper";
+import { getNotes } from "../store/notes/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,8 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function HomePage() {
+  const dispatch = useDispatch();
   const useStyles = makeStyles({
     root: {
       minWidth: 275,
@@ -22,6 +25,11 @@ export default function HomePage() {
       marginBottom: 12
     }
   });
+
+  //got to notes page on click
+  const handleNotesClick = () => {
+    dispatch(getNotes());
+  };
 
   const classes = useStyles();
   // const bull = <span className={classes.bullet}>•</span>;
@@ -43,7 +51,12 @@ export default function HomePage() {
         </CardContent>
         <CardActions>
           <Link to="/notes">
-            <Button variant="contained" color="primary" size="small">
+            <Button
+              onClick={handleNotesClick}
+              variant="contained"
+              color="primary"
+              size="small"
+            >
               I HAVE AN IDEA
             </Button>
           </Link>

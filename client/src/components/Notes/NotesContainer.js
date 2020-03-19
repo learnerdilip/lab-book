@@ -66,7 +66,7 @@ export default function NotesContainer() {
           aria-controls="panel1d-content"
           id="panel1d-header"
         >
-          <h2>NOTES</h2>
+          <h2>IDEAS I HAVE</h2>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <IdeaForm />
