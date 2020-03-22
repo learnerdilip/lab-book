@@ -16,15 +16,21 @@ body {
   min-width: 275px;
 }
 
-#idealine {
-  /* display: flex;
-  justify-content: space-between;
-  border: gray solid 2px;
-  border-radius: 1rem;
-  padding: 0rem 1rem;
-  font-style: italic;
-  background-color: #3f51b5;
-  color: whitesmoke; */
+/* .experientinputs {
+  margin-top: 2rem;
+} */
+
+h2 {
+  text-align: center;
+}
+
+input.MuiInputBase-input.MuiInput-input {
+  width: 12vw;
+}
+
+#experimentlogform {
+  width: 70%;
+  margin: 2rem auto;
 }
 
 div#plannercard {

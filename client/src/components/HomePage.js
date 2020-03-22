@@ -37,6 +37,9 @@ export default function HomePage() {
   // const state = useSelector(reduxState => reduxState.notes.notes);
   // console.log("--the state in notes---", state);
 
+  const handleLogs = () => {
+    //
+  };
   return (
     <div id="homecategories">
       <Card id="plannercard" className={classes.root} variant="outlined">
@@ -83,9 +86,16 @@ export default function HomePage() {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="primary" size="small">
-            START LOGGING
-          </Button>
+          <Link to="/experimentcalender">
+            <Button
+              onClick={handleLogs}
+              variant="contained"
+              color="primary"
+              size="small"
+            >
+              START LOGGING
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </div>

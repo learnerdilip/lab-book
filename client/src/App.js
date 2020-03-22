@@ -8,6 +8,8 @@ import LoginContainer from "./components/user/LoginContainer";
 import SignupContainer from "./components/user/SignupContainer";
 import Header from "./components/Header";
 import NotesContainer from "./components/Notes/NotesContainer";
+import ExperimentLogContainer from "./components/experimentLog/ExperimentLogContainer";
+import experimentLogFormContainer from "./components/experimentLog/experimentLogFormContainer";
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/notes" component={NotesContainer} />
+        <Route
+          exact
+          path="/experimentcalender"
+          component={ExperimentLogContainer}
+        />
+        <Route exact path="/logform" component={experimentLogFormContainer} />
       </Switch>
     </Provider>
   );
