@@ -18,6 +18,7 @@ export default function experimentLogFormContainer() {
     <div>
       <h2>Log today's experiment here</h2>
       <form onSubmit={handleSubmit} id="experimentlogform">
+        <Input variant="standard" type="date"></Input>
         <TextField
           label="Title"
           helperText=" "
