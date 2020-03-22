@@ -22,7 +22,7 @@ export default function experimentLogFormContainer() {
           label="Title"
           helperText=" "
           fullWidth
-          variant="outlined"
+          variant="filled"
           type="text"
         />
         <TextField
@@ -31,7 +31,7 @@ export default function experimentLogFormContainer() {
           fullWidth
           multiline
           rows="3"
-          variant="outlined"
+          variant="filled"
           type="text"
         />
         <TextField
@@ -40,7 +40,7 @@ export default function experimentLogFormContainer() {
           fullWidth
           multiline
           rows="5"
-          variant="outlined"
+          variant="filled"
           type="text"
         />
         <TextField
@@ -49,7 +49,7 @@ export default function experimentLogFormContainer() {
           fullWidth
           multiline
           rows="5"
-          variant="outlined"
+          variant="filled"
           type="text"
         />
         <TextField
@@ -59,7 +59,7 @@ export default function experimentLogFormContainer() {
           multiline
           rows="5"
           type="text"
-          variant="outlined"
+          variant="filled"
         />
 
         <TextField
@@ -69,7 +69,7 @@ export default function experimentLogFormContainer() {
           multiline
           rows="5"
           type="text"
-          variant="outlined"
+          variant="filled"
         />
         <Input type="file"></Input>
         <br />
