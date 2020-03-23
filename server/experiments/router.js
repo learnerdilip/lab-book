@@ -31,7 +31,7 @@ router.post(
         raw_data: req.body.raw_data,
         data_analysis: req.body.analysis,
         conclusion: req.body.conclusion,
-        image: req.file.path
+        image: "http://localhost:4000/" + req.file.path
       });
       console.log("---the experient data ----", createExperiement);
       res.send(createExperiement);

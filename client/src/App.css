@@ -69,3 +69,20 @@ input.MuiInputBase-input.MuiInput-input {
   display: flex;
   justify-content: space-between;
 }
+
+.calenderdays {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.daydiv {
+  width: 7vw;
+  height: 7vw;
+  margin: 1rem;
+  text-align: center;
+  font-size: x-large;
+  background-color: blue;
+}
+.calenderDay {
+  text-decoration: none;
+}
