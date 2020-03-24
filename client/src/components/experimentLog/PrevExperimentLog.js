@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import FileViewer from "react-file-viewer";
-import { dateFormat } from "../../helperfunctions";
+import moment from "moment";
+
 // import { CustomErrorComponent } from "custom-error";
 
 export default function PrevExperimentLog(props) {
@@ -31,7 +32,7 @@ export default function PrevExperimentLog(props) {
 
   return (
     <div id="prevexperimentcontainer">
-      <h2>{dateFormat(date)} WORK LOG</h2>
+      <h2> Work log for {moment(date).format("DD MMMM, YYYY")}</h2>
       {/* <h2>
         DATE <p></p> {dateFormat(date)}
       </h2> */}
