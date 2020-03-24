@@ -13,7 +13,7 @@ body {
   box-shadow: grey 0px -1px 7px 0px;
   height: 50vh;
   max-width: 45%;
-  min-width: 275px;
+  min-width: 2750px;
 }
 
 /* .experientinputs {
@@ -33,17 +33,33 @@ input.MuiInputBase-input.MuiInput-input {
   margin: 2rem auto;
 }
 
-div#plannercard {
-  background-image: url("https://www.monsterinsights.com/wp-content/uploads/2018/04/Google-Experiments-for-Growing-Your-eCommerce-Business.jpg");
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.mainhomecard {
+  width: 35vw;
+  min-height: 75vh;
+  margin-top: 5vh;
+  box-shadow: gray 0rem 0rem 1rem 1rem;
+}
+
+.homecardheading {
+  font-size: 250%;
+}
+
+#plannercard {
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/386/158/non_2x/vector-doctors-holding-dna-gene-concept-illustration.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: antiquewhite;
 }
 
 #experimentloggingcard {
-  background-image: url("https://previews.123rf.com/images/kwanchai123rf/kwanchai123rf1803/kwanchai123rf180300004/96732231-science-laboratory-test-tubes-lab-equipment-for-research-new-medical.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/170/822/non_2x/vector-free-linear-chemistry-icons.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: right bottom;
 }
 
 .MuiTypography-colorTextSecondary {
@@ -73,6 +89,12 @@ input.MuiInputBase-input.MuiInput-input {
 .calenderdays {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  border-radius: 3rem;
+  min-height: 55vh;
+  padding: 1rem;
+  width: 80%;
+  margin: auto;
 }
 
 .daydiv {
@@ -83,6 +105,41 @@ input.MuiInputBase-input.MuiInput-input {
   font-size: x-large;
   background-color: blue;
 }
+
 .calenderDay {
   text-decoration: none;
+  padding: 3px;
+  color: blue;
+  font-size: x-large;
+}
+
+.daydiv > a {
+  color: rgb(18, 8, 150);
+}
+
+.MuiPaper-root.MuiCard-root.daydiv.MuiPaper-elevation1.MuiPaper-rounded {
+  box-shadow: grey 0rem 0rem 1rem 3px;
+}
+
+.MuiTypography-h2 {
+  font-size: 3.75rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 900 !important;
+  color: royalblue;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+}
+
+.MuiPaper-outlined {
+  border: 0px solid rgba(63, 81, 181, 0.04);
+}
+
+.noteslist {
+  width: 90%;
+  margin: auto;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-outlinedPrimary {
+  margin: 1rem;
+  border: blue solid 2px;
 }

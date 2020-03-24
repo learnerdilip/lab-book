@@ -37,13 +37,13 @@ export default function Header() {
           </a>
         </Typography>
         <div id="loginsignupbutton">
-          <Button onClick={logoutuser} variant="contained" color="default">
+          <Button onClick={logoutuser} variant="outlined" color="default">
             <Link to="/">logout</Link>
           </Button>
-          <Button variant="contained" color="default">
+          <Button variant="outlined" color="default">
             <Link to="/login">Login</Link>
           </Button>
-          <Button variant="contained" color="default">
+          <Button variant="outlined" color="default">
             <Link to="/signup">Signup</Link>
           </Button>
         </div>

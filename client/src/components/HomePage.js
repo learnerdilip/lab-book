@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { CardHeader } from "@material-ui/core";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -32,72 +33,57 @@ export default function HomePage() {
   };
 
   const classes = useStyles();
-  // const bull = <span className={classes.bullet}>•</span>;
-
-  // const state = useSelector(reduxState => reduxState.notes.notes);
-  // console.log("--the state in notes---", state);
-
   const handleLogs = () => {
     //
   };
   return (
     <div id="homecategories">
-      <Card id="plannercard" className={classes.root} variant="outlined">
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            Your notes
-          </Typography>
-          <Typography variant="h2" component="h2">
-            Experiment Planner
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Link to="/notes">
-            <Button
-              onClick={handleNotesClick}
-              variant="contained"
-              color="primary"
-              size="small"
+      <Link to="/notes">
+        <Card
+          onClick={handleNotesClick}
+          id="plannercard"
+          className="mainhomecard"
+          variant="outlined"
+        >
+          <h2 className="homecardheading">Experiment Planner</h2>
+          <CardContent>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
             >
-              I HAVE AN IDEA
-            </Button>
-          </Link>
-        </CardActions>
-      </Card>
-      <Card
-        id="experimentloggingcard"
-        className={classes.root}
-        variant="outlined"
-      >
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            Experiments Log
-          </Typography>
-          <Typography variant="h2" component="h2">
-            Electronic Lab Book
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Link to="/experimentcalender">
-            <Button
-              onClick={handleLogs}
-              variant="contained"
-              color="primary"
-              size="small"
+              {/* Your notes */}
+            </Typography>
+            <Typography variant="h2" component="h2">
+              {/* Experiment Planner */}
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+      </Link>
+      <Link to="/experimentcalender">
+        <Card
+          onClick={handleLogs}
+          id="experimentloggingcard"
+          className="mainhomecard"
+          variant="outlined"
+        >
+          <h2 className="homecardheading">Electronic Lab Book</h2>
+          <CardContent>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
             >
-              START LOGGING
-            </Button>
-          </Link>
-        </CardActions>
-      </Card>
+              {/* Experiments Log */}
+            </Typography>
+            <Typography variant="h2" component="h2">
+              {/* Electronic Lab Book */}
+            </Typography>
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+      </Link>
     </div>
   );
 }

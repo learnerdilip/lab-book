@@ -5,7 +5,6 @@ const multer = require("multer");
 
 const router = new Router();
 
-// const upload = multer({ dest: "uploads/" });
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "uploads/");

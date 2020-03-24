@@ -31,7 +31,7 @@ export default function ToDoForm() {
   };
 
   return (
-    <div>
+    <div className="noteslist">
       <List>
         {!state.noteState.notes && <div>Loading...</div>}
         {state.noteState.notes &&
@@ -61,7 +61,9 @@ export default function ToDoForm() {
             value={text}
           />
         </FormControl>
-        <Button type="submit">SUBMIT</Button>
+        <Button variant="outlined" color="primary" type="submit">
+          SUBMIT
+        </Button>
       </form>
     </div>
   );

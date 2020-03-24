@@ -34,13 +34,13 @@ export default function ExperimentLogContainer() {
 
       <div className="calenderdays">
         {daysofMonth.map(day => (
-          <Card className="daydiv" key={day}>
+          <Button className="daydiv" variant="outlined" color="primary">
             <Link to="/logform">
               <div>
                 <p className="calenderDay">{day}</p>
               </div>
             </Link>
-          </Card>
+          </Button>
         ))}
       </div>
     </div>

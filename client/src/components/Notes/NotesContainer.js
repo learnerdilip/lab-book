@@ -56,7 +56,7 @@ export default function NotesContainer() {
   };
 
   return (
-    <div>
+    <div >
       <ExpansionPanel
         square
         expanded={expanded === "panel1"}

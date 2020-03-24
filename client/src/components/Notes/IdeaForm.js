@@ -31,7 +31,7 @@ export default function IdeaForm() {
   };
 
   return (
-    <div>
+    <div className="noteslist">
       <List>
         {!state.noteState.notes && <div>Loading...</div>}
         {state.noteState.notes &&
@@ -61,7 +61,7 @@ export default function IdeaForm() {
           />
         </FormControl>
 
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="outlined" color="primary" type="submit">
           SUBMIT
         </Button>
       </form>
