@@ -90,11 +90,11 @@ input.MuiInputBase-input.MuiInput-input {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  border-radius: 3rem;
   min-height: 55vh;
   padding: 1rem;
   width: 80%;
   margin: auto;
+  border: cornflowerblue solid 0.5rem;
 }
 
 .daydiv {
@@ -108,8 +108,8 @@ input.MuiInputBase-input.MuiInput-input {
 
 .calenderDay {
   text-decoration: none;
-  padding: 3px;
-  color: blue;
+  /* padding: 3px; */
+  color: royalblue;
   font-size: x-large;
 }
 
@@ -141,9 +141,40 @@ input.MuiInputBase-input.MuiInput-input {
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-outlinedPrimary {
   margin: 1rem;
-  border: blue solid 2px;
+  /* border: royalblue solid 2px; */
+  box-shadow: #222275d6 0px 0px 1rem;
 }
 
 #pg-viewer {
   max-height: 100vh;
+}
+
+p.calenderDay {
+  margin-top: auto;
+  font-size: initial;
+}
+
+.pdf-canvas {
+  border: double;
+  text-align: center;
+}
+
+/* element.style {
+  width: 100vw;
+  height: auto;
+} */
+
+.pg-viewer-wrapper {
+  border: black solid 2px;
+  height: 50vh !important;
+}
+
+.pg-viewer {
+  border: black solid 2px;
+  height: 50vh !important;
+}
+
+.photo-viewer-container {
+  border: black solid 2px;
+  height: 50vh !important;
 }

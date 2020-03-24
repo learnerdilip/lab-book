@@ -36,7 +36,7 @@ export default function ExperimentLogContainer() {
         <Link to={`/logform/${dateFormat(new Date())}`}>
           <Button className="daydiv" variant="outlined" color="primary">
             <div>
-              <p className="calenderDay">{dateFormat(new Date())}</p>
+              <p className="calenderDay">{"Today"}</p>
             </div>
           </Button>
         </Link>
