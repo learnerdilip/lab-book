@@ -31,6 +31,7 @@ const ExperimentLogFormContainer = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
+    data.append("date", formdata.date);
     data.append("fileuploaded", formdata.file);
     data.append("title", formdata.title);
     data.append("description", formdata.description);
@@ -48,6 +49,7 @@ const ExperimentLogFormContainer = () => {
       .then(res => setImage(res.data.image));
   };
 
+  console.log("formdata--------", formdata);
   return (
     <div>
       <h2>Log today's experiment here</h2>

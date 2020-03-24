@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const ExperimentsModel = mongoose.model(
   "experiments",
   mongoose.Schema({
+    date: {
+      type: Date
+    },
     title: {
       type: String,
       required: true

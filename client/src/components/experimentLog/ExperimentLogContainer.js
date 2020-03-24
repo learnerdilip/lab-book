@@ -1,12 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 import { Button, Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
@@ -34,13 +27,13 @@ export default function ExperimentLogContainer() {
 
       <div className="calenderdays">
         {daysofMonth.map(day => (
-          <Button className="daydiv" variant="outlined" color="primary">
-            <Link to="/logform">
+          <Link to="/logform">
+            <Button className="daydiv" variant="outlined" color="primary">
               <div>
                 <p className="calenderDay">{day}</p>
               </div>
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         ))}
       </div>
     </div>

@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CardHeader } from "@material-ui/core";
+import { getMonthLogs } from "../store/experiments/action";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -33,9 +33,11 @@ export default function HomePage() {
   };
 
   const classes = useStyles();
+
   const handleLogs = () => {
-    //
+    dispatch(getMonthLogs());
   };
+
   return (
     <div id="homecategories">
       <Link to="/notes">

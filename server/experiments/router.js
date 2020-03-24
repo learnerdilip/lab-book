@@ -23,7 +23,9 @@ router.post(
   upload.single("fileuploaded"),
   async (req, res, next) => {
     try {
+      // console.log("---the Frnt end REQUEST --------", req.body);
       const createExperiement = await ExperimentsModel.create({
+        date: req.body.date,
         title: req.body.title,
         description: req.body.description,
         protocol: req.body.protocol,
@@ -32,12 +34,30 @@ router.post(
         conclusion: req.body.conclusion,
         image: "http://localhost:4000/" + req.file.path
       });
-      console.log("---the experient data ----", createExperiement);
+      // console.log("---the experient SENDING  data ----", createExperiement);
       res.send(createExperiement);
     } catch {
       error => console.error(error);
     }
   }
 );
+
+router.get("/experiments", (req, res, next) => {
+  try {
+    // console.log("the experiments req bod", req.body);
+
+    //  user_id: req.user.id
+    ExperimentsModel.find()
+      .sort({ date: -1 })
+      .limit(2)
+      .exec((err, posts) => {
+        console.log("-------------------", posts);
+        res.send(posts);
+      });
+    // console.log("the experiment list#########", experimentList);
+  } catch {
+    error => console.error(error);
+  }
+});
 
 module.exports = router;
