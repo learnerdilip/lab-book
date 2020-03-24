@@ -29,15 +29,35 @@ export default function PrevExperimentLog(props) {
   // console.log("---the substring index-------", image.length - 3, image.length);
 
   return (
-    <div>
-      <h2>THE PREV EXPERIMRNT</h2>
-      <h2>DATE: {dateFormat(date)}</h2>
-      <h2>TITLE: {title}</h2>
-      <h2>DESCRIPTION: {description}</h2>
-      <h2>PROTOCOL: {protocol}</h2>
-      <h2>RAW DATA: {raw_data}</h2>
-      <h2>DATA ANALYSIS: {data_analysis}</h2>
-      <h2>CONCLUSION: {conclusion}</h2>
+    <div id="prevexperimentcontainer">
+      <h2>{dateFormat(date)} WORK LOG</h2>
+      {/* <h2>
+        DATE <p></p> {dateFormat(date)}
+      </h2> */}
+      <div className="prevexperimentfield">
+        <h2>TITLE</h2>
+        <p>{title}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>DESCRIPTION</h2>
+        <p>{description}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>PROTOCOL</h2>
+        <p>{protocol}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>RAW DATA</h2>
+        <p>{raw_data}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>DATA ANALYSIS</h2>
+        <p>{data_analysis}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>CONCLUSION</h2>
+        <p>{conclusion}</p>
+      </div>
       <FileViewer fileType={res} filePath={image} />
     </div>
   );
