@@ -27,6 +27,7 @@ router.post(
       const createExperiement = await ExperimentsModel.create({
         date: req.body.date,
         title: req.body.title,
+        keywords: req.body.keywords,
         description: req.body.description,
         protocol: req.body.protocol,
         raw_data: req.body.raw_data,

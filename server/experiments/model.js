@@ -10,6 +10,9 @@ const ExperimentsModel = mongoose.model(
       type: String,
       required: true
     },
+    keywords: {
+      type: String
+    },
     description: {
       type: String,
       required: true

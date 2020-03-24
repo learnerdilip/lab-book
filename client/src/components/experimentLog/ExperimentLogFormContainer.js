@@ -7,6 +7,7 @@ const ExperimentLogFormContainer = () => {
     file: null,
     date: null,
     title: null,
+    keywords: null,
     description: null,
     protocol: null,
     raw_data: null,
@@ -34,6 +35,7 @@ const ExperimentLogFormContainer = () => {
     data.append("date", formdata.date);
     data.append("fileuploaded", formdata.file);
     data.append("title", formdata.title);
+    data.append("keywords", formdata.keywords);
     data.append("description", formdata.description);
     data.append("protocol", formdata.protocol);
     data.append("raw_data", formdata.raw_data);
@@ -75,6 +77,16 @@ const ExperimentLogFormContainer = () => {
           variant="filled"
           type="text"
           value={formdata.title}
+          onChange={handleFormChange}
+        />
+        <TextField
+          label="keywords"
+          name="keywords"
+          helperText=" "
+          fullWidth
+          variant="filled"
+          type="text"
+          value={formdata.keywords}
           onChange={handleFormChange}
         />
         <TextField

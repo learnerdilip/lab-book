@@ -15,6 +15,7 @@ export default function PrevExperimentLog(props) {
   const {
     date,
     title,
+    keywords,
     description,
     protocol,
     raw_data,
@@ -37,6 +38,10 @@ export default function PrevExperimentLog(props) {
       <div className="prevexperimentfield">
         <h2>TITLE</h2>
         <p>{title}</p>
+      </div>
+      <div className="prevexperimentfield">
+        <h2>KEYWORDS</h2>
+        <p>{keywords}</p>
       </div>
       <div className="prevexperimentfield">
         <h2>DESCRIPTION</h2>
