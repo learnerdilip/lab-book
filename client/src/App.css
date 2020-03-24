@@ -143,3 +143,7 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-out
   margin: 1rem;
   border: blue solid 2px;
 }
+
+#pg-viewer {
+  max-height: 100vh;
+}

@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import NotesContainer from "./components/Notes/NotesContainer";
 import ExperimentLogContainer from "./components/experimentLog/ExperimentLogContainer";
 import ExperimentLogFormContainer from "./components/experimentLog/ExperimentLogFormContainer";
+import PrevExperimentLog from "./components/experimentLog/PrevExperimentLog";
 
 function App() {
   return (
@@ -25,7 +26,12 @@ function App() {
           path="/experimentcalender"
           component={ExperimentLogContainer}
         />
-        <Route exact path="/logform" component={ExperimentLogFormContainer} />
+        <Route
+          exact
+          path="/logform/:date"
+          component={ExperimentLogFormContainer}
+        />
+        <Route exact path="/log/:id" component={PrevExperimentLog} />
       </Switch>
     </Provider>
   );

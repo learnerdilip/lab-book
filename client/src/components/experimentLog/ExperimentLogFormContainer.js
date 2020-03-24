@@ -49,7 +49,7 @@ const ExperimentLogFormContainer = () => {
       .then(res => setImage(res.data.image));
   };
 
-  console.log("formdata--------", formdata);
+  // console.log("formdata--------", formdata);
   return (
     <div>
       <h2>Log today's experiment here</h2>

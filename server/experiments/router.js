@@ -49,7 +49,7 @@ router.get("/experiments", (req, res, next) => {
     //  user_id: req.user.id
     ExperimentsModel.find()
       .sort({ date: -1 })
-      .limit(2)
+      .limit(10)
       .exec((err, posts) => {
         console.log("-------------------", posts);
         res.send(posts);
