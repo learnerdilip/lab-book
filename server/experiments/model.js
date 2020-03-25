@@ -4,34 +4,30 @@ const ExperimentsModel = mongoose.model(
   "experiments",
   mongoose.Schema({
     date: {
-      type: Date
+      type: Date,
+      unique: true,
+      required: true
     },
     title: {
-      type: String,
-      required: true
+      type: String
     },
     keywords: {
       type: String
     },
     description: {
-      type: String,
-      required: true
+      type: String
     },
     protocol: {
-      type: String,
-      required: true
+      type: String
     },
     raw_data: {
-      type: String,
-      required: true
+      type: String
     },
     data_analysis: {
-      type: String,
-      required: true
+      type: String
     },
     conclusion: {
-      type: String,
-      required: true
+      type: String
     },
     image: {
       type: String

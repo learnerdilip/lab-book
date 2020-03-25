@@ -9,12 +9,12 @@ const NoteModel = mongoose.model(
     },
     creationDate: {
       type: Date,
-      require: true,
+      required: true,
       default: Date.now
     },
     text_cat: {
       type: String,
-      required: false
+      required: true
     },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
   })
