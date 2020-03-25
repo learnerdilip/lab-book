@@ -146,6 +146,12 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-out
   font-weight: 900;
   /* box-shadow: #222275d6 0px 0px 1rem; */
 }
+button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-outlinedSecondary {
+  margin: 1rem;
+  border: rgb(225, 89, 65) solid 2px;
+  font-weight: 900;
+  /* box-shadow: #222275d6 0px 0px 1rem; */
+}
 
 #pg-viewer {
   max-height: 100vh;
@@ -183,7 +189,7 @@ p.calenderDay {
 
 .MuiInputBase-input,
 .MuiInput-root {
-  width: 40%;
+  width: 100%;
 }
 
 p {
@@ -214,5 +220,3 @@ p {
   width: 85%;
   color: #444;
 }
-
-

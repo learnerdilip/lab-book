@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { dateFormat } from "../../helperfunctions";
@@ -53,18 +53,20 @@ export default function ExperimentLogContainer() {
       <div className="calenderdays">
         <h3>FILLED DATES</h3>
         {experimentsForMonth.map(day => (
-          <Link to={`/log/${day._id}`}>
-            <Button className="daydiv" variant="outlined" color="primary">
-              <div>
-                <p className="calenderDay">{moment(day.date).format("D")}</p>
-              </div>
-            </Button>
-          </Link>
+          <Tooltip title={day.title}>
+            <Link to={`/log/${day._id}`}>
+              <Button className="daydiv" variant="outlined" color="primary">
+                <div>
+                  <p className="calenderDay">{moment(day.date).format("D")}</p>
+                </div>
+              </Button>
+            </Link>
+          </Tooltip>
         ))}
         <h3>THE NON FILLED DATES</h3>
         {arrEmpty.map(date => (
           <Link to={`/logform/${date}`}>
-            <Button className="daydiv" variant="outlined" color="primary">
+            <Button className="daydiv" variant="outlined" color="secondary">
               <div>
                 <p className="calenderDay">{date}</p>
               </div>
