@@ -88,9 +88,9 @@ input.MuiInputBase-input.MuiInput-input {
 }
 
 .calenderdays {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* display: flex;
+  flex-wrap: wrap; */
+  justify-content: flex-start;
   min-height: 55vh;
   padding: 1rem;
   width: 80%;
@@ -214,3 +214,5 @@ p {
   width: 85%;
   color: #444;
 }
+
+

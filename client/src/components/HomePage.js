@@ -34,10 +34,6 @@ export default function HomePage() {
 
   const classes = useStyles();
 
-  const handleLogs = () => {
-    dispatch(getMonthLogs());
-  };
-
   return (
     <div id="homecategories">
       <Link to="/notes">
@@ -65,7 +61,7 @@ export default function HomePage() {
       </Link>
       <Link to="/experimentcalender">
         <Card
-          onClick={handleLogs}
+          onClick={() => dispatch(getMonthLogs())}
           id="experimentloggingcard"
           className="mainhomecard"
           variant="outlined"
