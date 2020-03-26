@@ -29,6 +29,7 @@ const ExperimentLogFormContainer = () => {
   };
 
   const [image, setImage] = useState("");
+
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
@@ -51,7 +52,6 @@ const ExperimentLogFormContainer = () => {
       .then(res => setImage(res.data.image));
   };
 
-  // console.log("formdata--------", formdata);
   return (
     <div>
       <h2>Log today's experiment here</h2>

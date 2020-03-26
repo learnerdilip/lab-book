@@ -44,15 +44,21 @@ router.post(
 );
 
 router.put(
-  "/experiment/",
-  upload.single("fileuploaded"),
+  "/experimentedit",
+  upload.single("uploadedit"),
   async (req, res, next) => {
     try {
-      console.log(
-        "##################### the request body###############",
-        req.query,
-        req.body
-      );
+      const doc = await ExperimentsModel.findOne({ _id: req.query.id });
+      doc.title = req.body.title;
+      doc.keywords = req.body.keywords;
+      doc.description = req.body.description;
+      doc.protocol = req.body.protocol;
+      doc.raw_data = req.body.raw_data;
+      doc.data_analysis = req.body.analysis;
+      doc.conclusion = req.body.conclusion;
+      doc.image = "http://localhost:4000/" + req.file.path;
+      doc.save();
+      res.send(doc);
     } catch {
       error => console.error(error);
     }

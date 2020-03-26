@@ -6,10 +6,9 @@ import axios from "axios";
 
 export default function Editform() {
   const params = useParams();
-  // console.log("params", params);
   const state = useSelector(reduxState => reduxState.experiments.experiments);
   const editable = state.find(item => item._id === params.id);
-  console.log("EDITABLE ITEM IS ", editable);
+  // console.log("EDITABLE ITEM IS ", editable);
 
   const [formdata, setFormdata] = useState({
     id: editable._id,
@@ -35,46 +34,39 @@ export default function Editform() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("fileuploaded", formdata.file);
-    data.append("date", formdata.date);
-    data.append("title", formdata.title);
-    data.append("keywords", formdata.keywords);
-    data.append("description", formdata.description);
-    data.append("protocol", formdata.protocol);
-    data.append("raw_data", formdata.raw_data);
-    data.append("analysis", formdata.analysis);
-    data.append("conclusion", formdata.conclusion);
+    const formData = new FormData();
+    formData.set("date", formdata.date);
+    formData.append("uploadedit", formdata.file);
+    formData.append("title", formdata.title);
+    formData.append("keywords", formdata.keywords);
+    formData.append("description", formdata.description);
+    formData.append("protocol", formdata.protocol);
+    formData.append("raw_data", formdata.raw_data);
+    formData.append("analysis", formdata.analysis);
+    formData.append("conclusion", formdata.conclusion);
     const config = {
       headers: {
         "content-type": "multipart/form-data"
       }
     };
-
     axios
       .put(
-        `http://localhost:4000/experiment?id=${params.id}`,
-        { data: formdata },
+        `http://localhost:4000/experimentedit?id=${params.id}`,
+        formData,
         config
       )
       .then(res => console.log(res.data));
   };
 
-  console.log("the local state---------------", formdata);
+  // console.log("the local state formdata---------------", formdata);
 
   return (
     <div>
-      <form onSubmit={handleSubmit} id="experimentlogform">
-        {/* <Input
-          variant="standard"
-          type="date"
-          value={formdata.date}
-          onChange={handleDateChange}
-        ></Input> */}
+      <form onSubmit={handleSubmit} id="experimenteditform">
         <Input
           onChange={handleFileChange}
           type="file"
-          name="fileuploaded"
+          name="uploadedit"
         ></Input>
         <br />
         <br />

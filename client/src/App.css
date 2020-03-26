@@ -209,6 +209,7 @@ p {
   border: solid rgba(0, 0, 0, 0.075);
   border-radius: 5px;
   margin-top: 1rem;
+  align-items: center;
 }
 
 .prevexperimentfield > h2 {
