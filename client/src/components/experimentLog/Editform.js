@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { TextField, Button, Input } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 import axios from "axios";
 
-const ExperimentLogFormContainer = () => {
-  const [formdata, setFormdata] = useState({
-    file: null,
-    date: null,
-    title: null,
-    keywords: null,
-    description: null,
-    protocol: null,
-    raw_data: null,
-    analysis: null,
-    conclusion: null
-  });
+export default function Editform() {
+  const params = useParams();
+  const state = useSelector(reduxState => reduxState.experiments.experiments);
+  const editable = state.find(item => item._id === params.id);
+  // console.log("EDITABLE ITEM IS ", editable);
 
-  const handleDateChange = e => {
-    setFormdata(prevState => ({ ...prevState, date: e.target.value }));
-  };
+  const [formdata, setFormdata] = useState({
+    id: editable._id,
+    file: editable.image,
+    date: editable.date,
+    title: editable.title,
+    keywords: editable.keywords,
+    description: editable.description,
+    protocol: editable.protocol,
+    raw_data: editable.raw_data,
+    analysis: editable.data_analysis,
+    conclusion: editable.conclusion
+  });
 
   const handleFileChange = e => {
     setFormdata(prevState => ({ ...prevState, file: e.target.files[0] }));
@@ -28,44 +32,41 @@ const ExperimentLogFormContainer = () => {
     setFormdata(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const [image, setImage] = useState("");
-
   const handleSubmit = e => {
     e.preventDefault();
-    const data = new FormData();
-    data.append("date", formdata.date);
-    data.append("fileuploaded", formdata.file);
-    data.append("title", formdata.title);
-    data.append("keywords", formdata.keywords);
-    data.append("description", formdata.description);
-    data.append("protocol", formdata.protocol);
-    data.append("raw_data", formdata.raw_data);
-    data.append("analysis", formdata.analysis);
-    data.append("conclusion", formdata.conclusion);
+    const formData = new FormData();
+    formData.set("date", formdata.date);
+    formData.append("uploadedit", formdata.file);
+    formData.append("title", formdata.title);
+    formData.append("keywords", formdata.keywords);
+    formData.append("description", formdata.description);
+    formData.append("protocol", formdata.protocol);
+    formData.append("raw_data", formdata.raw_data);
+    formData.append("analysis", formdata.analysis);
+    formData.append("conclusion", formdata.conclusion);
     const config = {
       headers: {
         "content-type": "multipart/form-data"
       }
     };
     axios
-      .post("http://localhost:4000/experiment", data, config)
-      .then(res => setImage(res.data.image));
+      .put(
+        `http://localhost:4000/experimentedit?id=${params.id}`,
+        formData,
+        config
+      )
+      .then(res => console.log(res.data));
   };
+
+  // console.log("the local state formdata---------------", formdata);
 
   return (
     <div>
-      <h2>Log today's experiment here</h2>
-      <form onSubmit={handleSubmit} id="experimentlogform">
-        <Input
-          variant="standard"
-          type="date"
-          value={formdata.date}
-          onChange={handleDateChange}
-        ></Input>
+      <form onSubmit={handleSubmit} id="experimenteditform">
         <Input
           onChange={handleFileChange}
           type="file"
-          name="fileuploaded"
+          name="uploadedit"
         ></Input>
         <br />
         <br />
@@ -155,6 +156,4 @@ const ExperimentLogFormContainer = () => {
       </form>
     </div>
   );
-};
-
-export default ExperimentLogFormContainer;
+}

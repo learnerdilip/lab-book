@@ -11,6 +11,7 @@ import NotesContainer from "./components/Notes/NotesContainer";
 import ExperimentLogContainer from "./components/experimentLog/ExperimentLogContainer";
 import ExperimentLogFormContainer from "./components/experimentLog/ExperimentLogFormContainer";
 import PrevExperimentLog from "./components/experimentLog/PrevExperimentLog";
+import Editform from "./components/experimentLog/Editform";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           component={ExperimentLogFormContainer}
         />
         <Route exact path="/log/:id" component={PrevExperimentLog} />
+        <Route exact path="/log/edit/:id" component={Editform} />
       </Switch>
     </Provider>
   );
