@@ -13,6 +13,15 @@ const experimentReducer = (state = initialState, action) => {
         experimentDays: monthdates
       };
     }
+    case "UPDATE_EDIT_EXP": {
+      const tempArr = [...state.experiments].filter(
+        item => item._id !== action.payload._id
+      );
+      return {
+        ...state,
+        experiments: [...tempArr, action.payload]
+      };
+    }
     default: {
       return { ...state };
     }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Button, Input } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import axios from "axios";
 
 export default function Editform() {
+  const dispatch = useDispatch();
   const params = useParams();
   const state = useSelector(reduxState => reduxState.experiments.experiments);
   const editable = state.find(item => item._id === params.id);
@@ -13,7 +14,6 @@ export default function Editform() {
   const [formdata, setFormdata] = useState({
     id: editable._id,
     file: editable.image,
-    date: editable.date,
     title: editable.title,
     keywords: editable.keywords,
     description: editable.description,
@@ -35,7 +35,6 @@ export default function Editform() {
   const handleSubmit = e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.set("date", formdata.date);
     formData.append("uploadedit", formdata.file);
     formData.append("title", formdata.title);
     formData.append("keywords", formdata.keywords);
@@ -55,7 +54,10 @@ export default function Editform() {
         formData,
         config
       )
-      .then(res => console.log(res.data));
+      .then(res => {
+        console.log("res.data", res.data);
+        dispatch({ type: "UPDATE_EDIT_EXP", payload: res.data });
+      });
   };
 
   // console.log("the local state formdata---------------", formdata);
