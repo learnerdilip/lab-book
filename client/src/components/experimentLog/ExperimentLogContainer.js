@@ -1,10 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Card, Tooltip } from "@material-ui/core";
+import { Button, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { dateFormat } from "../../helperfunctions";
-import Calender from "./Calender";
 import moment from "moment";
 
 const useStyles = makeStyles({
@@ -22,8 +20,6 @@ export default function ExperimentLogContainer() {
   const monthlogDates = useSelector(
     reduxState => reduxState.experiments.experimentDays
   );
-
-  const daysofMonth = experimentsForMonth;
 
   //the current month days calc
   const monthindex = 0;

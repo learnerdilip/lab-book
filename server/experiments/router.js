@@ -43,19 +43,32 @@ router.post(
   }
 );
 
-router.get("/experiments", (req, res, next) => {
-  try {
-    // console.log("the experiments req bod", req.body);
+router.put(
+  "/experiment/",
+  upload.single("fileuploaded"),
+  async (req, res, next) => {
+    try {
+      console.log(
+        "##################### the request body###############",
+        req.query,
+        req.body
+      );
+    } catch {
+      error => console.error(error);
+    }
+  }
+);
 
+router.get("/experiments", async (req, res, next) => {
+  try {
     //  user_id: req.user.id
     ExperimentsModel.find()
-      .sort({ date: -1 })
+      .sort({ date: 1 })
       .limit(10)
       .exec((err, posts) => {
-        console.log("-------------------", posts);
+        // console.log("-------------------", posts);
         res.send(posts);
       });
-    // console.log("the experiment list#########", experimentList);
   } catch {
     error => console.error(error);
   }
