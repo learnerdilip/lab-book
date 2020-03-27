@@ -29,8 +29,14 @@ const ExperimentsModel = mongoose.model(
     conclusion: {
       type: String
     },
-    image: {
-      type: String
+    proto_files: {
+      type: [String]
+    },
+    raw_files: {
+      type: [String]
+    },
+    data_files: {
+      type: [String]
     },
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
   })

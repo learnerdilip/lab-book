@@ -27,6 +27,15 @@ var cpUpload = upload.fields([
 router.post("/experiment", cpUpload, async (req, res, next) => {
   try {
     console.log("---the Frnt end REQUEST --------", req.files);
+    const protofiles = req.files["protofiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
+    const rawfiles = req.files["rawfiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
+    const datafiles = req.files["datafiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
     const createExperiement = await ExperimentsModel.create({
       date: req.body.date,
       title: req.body.title,
@@ -36,9 +45,11 @@ router.post("/experiment", cpUpload, async (req, res, next) => {
       raw_data: req.body.raw_data,
       data_analysis: req.body.analysis,
       conclusion: req.body.conclusion,
-      image: "http://localhost:4000/" + req.file.path
+      proto_files: [...protofiles],
+      raw_files: [...rawfiles],
+      data_files: [...datafiles]
     });
-    // console.log("---the experient SENDING  data ----", createExperiement);
+    console.log("---the experient SENDING  data ----", createExperiement);
     res.send(createExperiement);
   } catch {
     error => console.error(error);

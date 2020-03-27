@@ -41,25 +41,26 @@ const ExperimentLogFormContainer = () => {
 
   const [image, setImage] = useState("");
 
-  // [from github]  You're essentially doing formData.append('files', { files: [File, File, File] }) which won't work, try reworking it into something like:
-
-  // for (const file of this.state.files) {
-  //   formData.append('file', file)
-  // }
-
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
     data.append("date", formdata.date);
-    for (const file of formdata.protofiles) {
-      data.append("protofiles", file);
+    if (formdata.protofiles) {
+      for (const file of formdata.protofiles) {
+        data.append("protofiles", file);
+      }
     }
-    for (const file of formdata.rawfiles) {
-      data.append("rawfiles", file);
+    if (formdata.rawfiles) {
+      for (const file of formdata.rawfiles) {
+        data.append("rawfiles", file);
+      }
     }
-    for (const file of formdata.datafiles) {
-      data.append("datafiles", file);
+    if (formdata.datafiles) {
+      for (const file of formdata.datafiles) {
+        data.append("datafiles", file);
+      }
     }
+
     data.append("title", formdata.title);
     data.append("keywords", formdata.keywords);
     data.append("description", formdata.description);
@@ -74,7 +75,7 @@ const ExperimentLogFormContainer = () => {
     };
     axios
       .post("http://localhost:4000/experiment", data, config)
-      .then(res => setImage(res.data.image));
+      .then(res => console.log("****THE SERVER RESPONSE***", res));
   };
 
   return (
