@@ -1,47 +1,58 @@
 const { Router } = require("express");
 const ExperimentsModel = require("./model");
+const auth = require("../auth/middleWare");
 const multer = require("multer");
-// const auth = require("../auth/middleWare");
-
 const router = new Router();
+// var upload = multer({ dest: "uploads/" });
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "uploads/");
   },
   filename: function(req, file, cb) {
-    cb(
-      null,
-      new Date().toISOString().substring(0, 10) + "_" + file.originalname
-    );
+    cb(null, new Date().getMilliseconds() + "_" + file.originalname);
   }
 });
 var upload = multer({ storage: storage });
 
-router.post(
-  "/experiment",
-  upload.single("fileuploaded"),
-  async (req, res, next) => {
-    try {
-      // console.log("---the Frnt end REQUEST --------", req.body);
-      const createExperiement = await ExperimentsModel.create({
-        date: req.body.date,
-        title: req.body.title,
-        keywords: req.body.keywords,
-        description: req.body.description,
-        protocol: req.body.protocol,
-        raw_data: req.body.raw_data,
-        data_analysis: req.body.analysis,
-        conclusion: req.body.conclusion,
-        image: "http://localhost:4000/" + req.file.path
-      });
-      // console.log("---the experient SENDING  data ----", createExperiement);
-      res.send(createExperiement);
-    } catch {
-      error => console.error(error);
-    }
+var cpUpload = upload.fields([
+  { name: "protofiles", maxCount: 5 },
+  { name: "rawfiles", maxCount: 5 },
+  { name: "datafiles", maxCount: 5 }
+]);
+
+router.post("/experiment", auth, cpUpload, async (req, res, next) => {
+  try {
+    console.log("---the Frnt end REQUEST --------", req.files);
+    const protofiles = req.files["protofiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
+    const rawfiles = req.files["rawfiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
+    const datafiles = req.files["datafiles"].map(
+      file => "http://localhost:4000/" + file.path
+    );
+    const createExperiement = await ExperimentsModel.create({
+      date: req.body.date,
+      title: req.body.title,
+      keywords: req.body.keywords,
+      description: req.body.description,
+      protocol: req.body.protocol,
+      raw_data: req.body.raw_data,
+      data_analysis: req.body.analysis,
+      conclusion: req.body.conclusion,
+      proto_files: [...protofiles],
+      raw_files: [...rawfiles],
+      data_files: [...datafiles],
+      user_id: req.user._id
+    });
+    console.log("---the experient SENDING  data ----", createExperiement);
+    res.send(createExperiement);
+  } catch {
+    error => console.error(error);
   }
-);
+});
 
 router.put(
   "/experimentedit",

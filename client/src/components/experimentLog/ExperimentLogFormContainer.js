@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { TextField, Button, Input } from "@material-ui/core";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const ExperimentLogFormContainer = () => {
+  const usertoken = useSelector(reduxState => reduxState.user.token);
+
+  const params = useParams();
+
   const [formdata, setFormdata] = useState({
-    file: null,
-    date: null,
+    protofiles: null,
+    rawfiles: null,
+    datafiles: null,
+    date: new Date(2020, params.month, params.date),
     title: null,
     keywords: null,
     description: null,
@@ -15,12 +23,10 @@ const ExperimentLogFormContainer = () => {
     conclusion: null
   });
 
-  const handleDateChange = e => {
-    setFormdata(prevState => ({ ...prevState, date: e.target.value }));
-  };
 
   const handleFileChange = e => {
-    setFormdata(prevState => ({ ...prevState, file: e.target.files[0] }));
+    const { name, files } = e.target;
+    setFormdata(prevState => ({ ...prevState, [name]: files }));
   };
 
   const handleFormChange = e => {
@@ -28,13 +34,26 @@ const ExperimentLogFormContainer = () => {
     setFormdata(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const [image, setImage] = useState("");
-
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
     data.append("date", formdata.date);
-    data.append("fileuploaded", formdata.file);
+    if (formdata.protofiles) {
+      for (const file of formdata.protofiles) {
+        data.append("protofiles", file);
+      }
+    }
+    if (formdata.rawfiles) {
+      for (const file of formdata.rawfiles) {
+        data.append("rawfiles", file);
+      }
+    }
+    if (formdata.datafiles) {
+      for (const file of formdata.datafiles) {
+        data.append("datafiles", file);
+      }
+    }
+
     data.append("title", formdata.title);
     data.append("keywords", formdata.keywords);
     data.append("description", formdata.description);
@@ -44,29 +63,27 @@ const ExperimentLogFormContainer = () => {
     data.append("conclusion", formdata.conclusion);
     const config = {
       headers: {
-        "content-type": "multipart/form-data"
+        "content-type": "multipart/form-data",
+        Authorization: `Bearer ${usertoken}`
       }
     };
-    axios
-      .post("http://localhost:4000/experiment", data, config)
-      .then(res => setImage(res.data.image));
+    axios.post("http://localhost:4000/experiment", data, config).then(res => {
+      console.log("****THE SERVER RESPONSE***", res);
+      //
+    });
   };
 
   return (
     <div>
       <h2>Log today's experiment here</h2>
       <form onSubmit={handleSubmit} id="experimentlogform">
-        <Input
+        {/* <Input
           variant="standard"
           type="date"
           value={formdata.date}
           onChange={handleDateChange}
-        ></Input>
-        <Input
-          onChange={handleFileChange}
-          type="file"
-          name="fileuploaded"
-        ></Input>
+        ></Input> */}
+
         <br />
         <br />
         <TextField
@@ -101,6 +118,13 @@ const ExperimentLogFormContainer = () => {
           value={formdata.description}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleFileChange}
+          inputProps={{ multiple: true }}
+          enctype="multipart/form-data"
+          type="file"
+          name="protofiles"
+        ></Input>
         <TextField
           label="Protocol"
           name="protocol"
@@ -113,6 +137,12 @@ const ExperimentLogFormContainer = () => {
           value={formdata.protocol}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleFileChange}
+          inputProps={{ multiple: true }}
+          type="file"
+          name="rawfiles"
+        ></Input>
         <TextField
           label="Raw Data"
           name="raw_data"
@@ -125,6 +155,12 @@ const ExperimentLogFormContainer = () => {
           value={formdata.raw_data}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleFileChange}
+          inputProps={{ multiple: true }}
+          type="file"
+          name="datafiles"
+        ></Input>
         <TextField
           label="Data Analysis"
           name="analysis"

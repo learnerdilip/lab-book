@@ -21,27 +21,22 @@ export default function ExperimentLogContainer() {
     reduxState => reduxState.experiments.experimentDays
   );
 
-  //the current month days calc
   const monthindex = 0;
   const currMonth = new Date().getMonth() + 1 - monthindex;
   const CalctotalmonthDays = (year, month) =>
     new Date(year, month, 0).getDate();
   const totalmonthdays = CalctotalmonthDays(2020, currMonth);
-  // console.log("################### ", currMonth, totalmonthdays);
   function datesList(daysinmonth) {
     let dateArr = [];
     for (let i = 1; i <= daysinmonth; i++) dateArr.push(i);
     return dateArr;
   }
   const allmonthdays = datesList(totalmonthdays);
-  // console.log("-----------allmonthdays----------", allmonthdays);
-  //the current month days calc
 
   const arrFilled = allmonthdays.filter(day => monthlogDates.includes(day));
   const arrEmpty = allmonthdays.filter(day => !monthlogDates.includes(day));
   console.log("---the filled, empty arr-----", arrFilled, arrEmpty);
 
-  if (experimentsForMonth.length < 1) return <h2>Loading...</h2>;
   return (
     <div>
       <h2>THE CURRENT MONTH</h2>
@@ -61,7 +56,7 @@ export default function ExperimentLogContainer() {
         ))}
         <h3>THE NON FILLED DATES</h3>
         {arrEmpty.map(date => (
-          <Link to={`/logform/${date}`}>
+          <Link to={`/logform/${currMonth}/${date}`}>
             <Button className="daydiv" variant="outlined" color="secondary">
               <div>
                 <p className="calenderDay">{date}</p>
@@ -70,7 +65,6 @@ export default function ExperimentLogContainer() {
           </Link>
         ))}
       </div>
-      {/* <Calender /> */}
     </div>
   );
 }
