@@ -39,8 +39,6 @@ const ExperimentLogFormContainer = () => {
     setFormdata(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const [image, setImage] = useState("");
-
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
@@ -73,9 +71,10 @@ const ExperimentLogFormContainer = () => {
         "content-type": "multipart/form-data"
       }
     };
-    axios
-      .post("http://localhost:4000/experiment", data, config)
-      .then(res => console.log("****THE SERVER RESPONSE***", res));
+    axios.post("http://localhost:4000/experiment", data, config).then(res => {
+      console.log("****THE SERVER RESPONSE***", res);
+      //
+    });
   };
 
   return (

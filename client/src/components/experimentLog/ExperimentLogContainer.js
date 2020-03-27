@@ -41,7 +41,7 @@ export default function ExperimentLogContainer() {
   const arrEmpty = allmonthdays.filter(day => !monthlogDates.includes(day));
   console.log("---the filled, empty arr-----", arrFilled, arrEmpty);
 
-  if (experimentsForMonth.length < 1) return <h2>Loading...</h2>;
+  // if (experimentsForMonth.length < 1) return <h2>Loading...</h2>;
   return (
     <div>
       <h2>THE CURRENT MONTH</h2>

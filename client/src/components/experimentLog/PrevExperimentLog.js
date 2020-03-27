@@ -3,18 +3,18 @@ import { useSelector } from "react-redux";
 import FileViewer from "react-file-viewer";
 import moment from "moment";
 import { Button, Tooltip } from "@material-ui/core";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
+import { fileExtension } from "../../helperfunctions";
 
 // import { CustomErrorComponent } from "custom-error";
 
-export default function PrevExperimentLog(props) {
-  console.log("---the props in prev exp comp---", props, props.match.params.id);
+export default function PrevExperimentLog() {
+  const params = useParams();
+  console.log("*****PARAMS*******", params);
 
   const state = useSelector(reduxState => reduxState.experiments.experiments);
 
-  const currExperiment = state.filter(
-    item => item._id === props.match.params.id
-  );
+  const currExperiment = state.filter(item => item._id === params.id);
   const {
     date,
     title,
@@ -24,12 +24,10 @@ export default function PrevExperimentLog(props) {
     raw_data,
     data_analysis,
     conclusion,
-    image
+    proto_files,
+    data_files,
+    raw_files
   } = currExperiment[0];
-
-  const dotIndex = image.indexOf(".");
-  var res = image.substring(dotIndex + 1, image.length);
-  // console.log("---the substring index-------", image.length - 3, image.length);
 
   const history = useHistory();
   const handleOpen = id => {
@@ -41,7 +39,7 @@ export default function PrevExperimentLog(props) {
       <h2> Work log for {moment(date).format("DD MMMM, YYYY")}</h2>
       <Tooltip title="Edit this document">
         <Button
-          onClick={() => handleOpen(props.match.params.id)}
+          onClick={() => handleOpen(params.id)}
           variant="outlined"
           color="primary"
         >
@@ -50,9 +48,6 @@ export default function PrevExperimentLog(props) {
           </span>
         </Button>
       </Tooltip>
-      {/* <h2>
-        DATE <p></p> {dateFormat(date)}
-      </h2> */}
       <div className="prevexperimentfield">
         <h2>TITLE</h2>
         <p>{title}</p>
@@ -69,19 +64,27 @@ export default function PrevExperimentLog(props) {
         <h2>PROTOCOL</h2>
         <p>{protocol}</p>
       </div>
+      {proto_files.map(file => (
+        <FileViewer fileType={fileExtension(file)} filePath={file} />
+      ))}
       <div className="prevexperimentfield">
         <h2>RAW DATA</h2>
         <p>{raw_data}</p>
       </div>
+      {raw_files.map(file => (
+        <FileViewer fileType={fileExtension(file)} filePath={file} />
+      ))}
       <div className="prevexperimentfield">
         <h2>DATA ANALYSIS</h2>
         <p>{data_analysis}</p>
       </div>
+      {data_files.map(file => (
+        <FileViewer fileType={fileExtension(file)} filePath={file} />
+      ))}
       <div className="prevexperimentfield">
         <h2>CONCLUSION</h2>
         <p>{conclusion}</p>
       </div>
-      <FileViewer fileType={res} filePath={image} />
     </div>
   );
 }
