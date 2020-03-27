@@ -4,7 +4,9 @@ import axios from "axios";
 
 const ExperimentLogFormContainer = () => {
   const [formdata, setFormdata] = useState({
-    file: null,
+    protofiles: null,
+    rawfiles: null,
+    datafiles: null,
     date: null,
     title: null,
     keywords: null,
@@ -19,8 +21,17 @@ const ExperimentLogFormContainer = () => {
     setFormdata(prevState => ({ ...prevState, date: e.target.value }));
   };
 
-  const handleFileChange = e => {
-    setFormdata(prevState => ({ ...prevState, file: e.target.files[0] }));
+  const handleProtoFileChange = e => {
+    console.log("***SELECTED FILES****", e.target.files);
+    setFormdata(prevState => ({ ...prevState, protofiles: e.target.files }));
+  };
+  const handleRawFileChange = e => {
+    console.log("***SELECTED RAW FILES****", e.target.files);
+    setFormdata(prevState => ({ ...prevState, rawfiles: e.target.files }));
+  };
+  const handleDataFileChange = e => {
+    console.log("***SELECTED DATA FILES****", e.target.files);
+    setFormdata(prevState => ({ ...prevState, datafiles: e.target.files }));
   };
 
   const handleFormChange = e => {
@@ -30,11 +41,25 @@ const ExperimentLogFormContainer = () => {
 
   const [image, setImage] = useState("");
 
+  // [from github]  You're essentially doing formData.append('files', { files: [File, File, File] }) which won't work, try reworking it into something like:
+
+  // for (const file of this.state.files) {
+  //   formData.append('file', file)
+  // }
+
   const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
     data.append("date", formdata.date);
-    data.append("fileuploaded", formdata.file);
+    for (const file of formdata.protofiles) {
+      data.append("protofiles", file);
+    }
+    for (const file of formdata.rawfiles) {
+      data.append("rawfiles", file);
+    }
+    for (const file of formdata.datafiles) {
+      data.append("datafiles", file);
+    }
     data.append("title", formdata.title);
     data.append("keywords", formdata.keywords);
     data.append("description", formdata.description);
@@ -62,11 +87,7 @@ const ExperimentLogFormContainer = () => {
           value={formdata.date}
           onChange={handleDateChange}
         ></Input>
-        <Input
-          onChange={handleFileChange}
-          type="file"
-          name="fileuploaded"
-        ></Input>
+
         <br />
         <br />
         <TextField
@@ -101,6 +122,13 @@ const ExperimentLogFormContainer = () => {
           value={formdata.description}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleProtoFileChange}
+          inputProps={{ multiple: true }}
+          enctype="multipart/form-data"
+          type="file"
+          name="protofiles"
+        ></Input>
         <TextField
           label="Protocol"
           name="protocol"
@@ -113,6 +141,12 @@ const ExperimentLogFormContainer = () => {
           value={formdata.protocol}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleRawFileChange}
+          inputProps={{ multiple: true }}
+          type="file"
+          name="rawfiles"
+        ></Input>
         <TextField
           label="Raw Data"
           name="raw_data"
@@ -125,6 +159,12 @@ const ExperimentLogFormContainer = () => {
           value={formdata.raw_data}
           onChange={handleFormChange}
         />
+        <Input
+          onChange={handleDataFileChange}
+          inputProps={{ multiple: true }}
+          type="file"
+          name="datafiles"
+        ></Input>
         <TextField
           label="Data Analysis"
           name="analysis"

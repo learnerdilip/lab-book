@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const ExperimentsModel = require("./model");
-const multer = require("multer");
 // const auth = require("../auth/middleWare");
-
+const multer = require("multer");
 const router = new Router();
+// var upload = multer({ dest: "uploads/" });
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -18,30 +18,32 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-router.post(
-  "/experiment",
-  upload.single("fileuploaded"),
-  async (req, res, next) => {
-    try {
-      // console.log("---the Frnt end REQUEST --------", req.body);
-      const createExperiement = await ExperimentsModel.create({
-        date: req.body.date,
-        title: req.body.title,
-        keywords: req.body.keywords,
-        description: req.body.description,
-        protocol: req.body.protocol,
-        raw_data: req.body.raw_data,
-        data_analysis: req.body.analysis,
-        conclusion: req.body.conclusion,
-        image: "http://localhost:4000/" + req.file.path
-      });
-      // console.log("---the experient SENDING  data ----", createExperiement);
-      res.send(createExperiement);
-    } catch {
-      error => console.error(error);
-    }
+var cpUpload = upload.fields([
+  { name: "protofiles", maxCount: 5 },
+  { name: "rawfiles", maxCount: 5 },
+  { name: "datafiles", maxCount: 5 }
+]);
+
+router.post("/experiment", cpUpload, async (req, res, next) => {
+  try {
+    console.log("---the Frnt end REQUEST --------", req.files);
+    const createExperiement = await ExperimentsModel.create({
+      date: req.body.date,
+      title: req.body.title,
+      keywords: req.body.keywords,
+      description: req.body.description,
+      protocol: req.body.protocol,
+      raw_data: req.body.raw_data,
+      data_analysis: req.body.analysis,
+      conclusion: req.body.conclusion,
+      image: "http://localhost:4000/" + req.file.path
+    });
+    // console.log("---the experient SENDING  data ----", createExperiement);
+    res.send(createExperiement);
+  } catch {
+    error => console.error(error);
   }
-);
+});
 
 router.put(
   "/experimentedit",
