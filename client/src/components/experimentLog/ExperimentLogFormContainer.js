@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { TextField, Button, Input } from "@material-ui/core";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 const ExperimentLogFormContainer = () => {
+  const usertoken = useSelector(reduxState => reduxState.user.token);
+
+  const params = useParams();
+
   const [formdata, setFormdata] = useState({
     protofiles: null,
     rawfiles: null,
     datafiles: null,
-    date: null,
+    date: new Date(2020, params.month, params.date),
     title: null,
     keywords: null,
     description: null,
@@ -17,21 +23,10 @@ const ExperimentLogFormContainer = () => {
     conclusion: null
   });
 
-  const handleDateChange = e => {
-    setFormdata(prevState => ({ ...prevState, date: e.target.value }));
-  };
 
-  const handleProtoFileChange = e => {
-    console.log("***SELECTED FILES****", e.target.files);
-    setFormdata(prevState => ({ ...prevState, protofiles: e.target.files }));
-  };
-  const handleRawFileChange = e => {
-    console.log("***SELECTED RAW FILES****", e.target.files);
-    setFormdata(prevState => ({ ...prevState, rawfiles: e.target.files }));
-  };
-  const handleDataFileChange = e => {
-    console.log("***SELECTED DATA FILES****", e.target.files);
-    setFormdata(prevState => ({ ...prevState, datafiles: e.target.files }));
+  const handleFileChange = e => {
+    const { name, files } = e.target;
+    setFormdata(prevState => ({ ...prevState, [name]: files }));
   };
 
   const handleFormChange = e => {
@@ -68,7 +63,8 @@ const ExperimentLogFormContainer = () => {
     data.append("conclusion", formdata.conclusion);
     const config = {
       headers: {
-        "content-type": "multipart/form-data"
+        "content-type": "multipart/form-data",
+        Authorization: `Bearer ${usertoken}`
       }
     };
     axios.post("http://localhost:4000/experiment", data, config).then(res => {
@@ -81,12 +77,12 @@ const ExperimentLogFormContainer = () => {
     <div>
       <h2>Log today's experiment here</h2>
       <form onSubmit={handleSubmit} id="experimentlogform">
-        <Input
+        {/* <Input
           variant="standard"
           type="date"
           value={formdata.date}
           onChange={handleDateChange}
-        ></Input>
+        ></Input> */}
 
         <br />
         <br />
@@ -123,7 +119,7 @@ const ExperimentLogFormContainer = () => {
           onChange={handleFormChange}
         />
         <Input
-          onChange={handleProtoFileChange}
+          onChange={handleFileChange}
           inputProps={{ multiple: true }}
           enctype="multipart/form-data"
           type="file"
@@ -142,7 +138,7 @@ const ExperimentLogFormContainer = () => {
           onChange={handleFormChange}
         />
         <Input
-          onChange={handleRawFileChange}
+          onChange={handleFileChange}
           inputProps={{ multiple: true }}
           type="file"
           name="rawfiles"
@@ -160,7 +156,7 @@ const ExperimentLogFormContainer = () => {
           onChange={handleFormChange}
         />
         <Input
-          onChange={handleDataFileChange}
+          onChange={handleFileChange}
           inputProps={{ multiple: true }}
           type="file"
           name="datafiles"

@@ -29,7 +29,7 @@ function App() {
         />
         <Route
           exact
-          path="/logform/:date"
+          path="/logform/:month/:date"
           component={ExperimentLogFormContainer}
         />
         <Route exact path="/log/:id" component={PrevExperimentLog} />

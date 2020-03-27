@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const ExperimentsModel = require("./model");
-// const auth = require("../auth/middleWare");
+const auth = require("../auth/middleWare");
 const multer = require("multer");
 const router = new Router();
 // var upload = multer({ dest: "uploads/" });
@@ -10,10 +10,7 @@ var storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: function(req, file, cb) {
-    cb(
-      null,
-      new Date().toISOString().substring(0, 10) + "_" + file.originalname
-    );
+    cb(null, new Date().getMilliseconds() + "_" + file.originalname);
   }
 });
 var upload = multer({ storage: storage });
@@ -24,7 +21,7 @@ var cpUpload = upload.fields([
   { name: "datafiles", maxCount: 5 }
 ]);
 
-router.post("/experiment", cpUpload, async (req, res, next) => {
+router.post("/experiment", auth, cpUpload, async (req, res, next) => {
   try {
     console.log("---the Frnt end REQUEST --------", req.files);
     const protofiles = req.files["protofiles"].map(
@@ -47,7 +44,8 @@ router.post("/experiment", cpUpload, async (req, res, next) => {
       conclusion: req.body.conclusion,
       proto_files: [...protofiles],
       raw_files: [...rawfiles],
-      data_files: [...datafiles]
+      data_files: [...datafiles],
+      user_id: req.user._id
     });
     console.log("---the experient SENDING  data ----", createExperiement);
     res.send(createExperiement);

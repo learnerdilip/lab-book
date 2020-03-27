@@ -20,6 +20,11 @@ body {
   margin-top: 2rem;
 } */
 
+h2,
+h3 {
+  color: #777;
+}
+
 h2 {
   text-align: center;
 }
@@ -163,27 +168,23 @@ p.calenderDay {
 }
 
 .pdf-canvas {
-  border: double;
+  /* border: double; */
   text-align: center;
 }
 
-/* element.style {
-  width: 100vw;
-  height: auto;
-} */
-
 .pg-viewer-wrapper {
-  border: black solid 2px;
+  border: #ccc solid 2px;
   height: 50vh !important;
+  margin: 1% auto;
 }
 
 .pg-viewer {
-  border: black solid 2px;
+  /* border: black solid 2px; */
   height: 50vh !important;
 }
 
 .photo-viewer-container {
-  border: black solid 2px;
+  border: #ccc solid 2px;
   height: 50vh !important;
 }
 

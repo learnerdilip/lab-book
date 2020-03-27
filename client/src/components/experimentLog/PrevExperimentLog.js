@@ -10,7 +10,7 @@ import { fileExtension } from "../../helperfunctions";
 
 export default function PrevExperimentLog() {
   const params = useParams();
-  console.log("*****PARAMS*******", params);
+  // console.log("*****PARAMS*******", params);
 
   const state = useSelector(reduxState => reduxState.experiments.experiments);
 
