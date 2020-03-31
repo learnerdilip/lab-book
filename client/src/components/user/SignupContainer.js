@@ -47,7 +47,7 @@ const SignupContainer = () => {
   return (
     <div>
       <h2>Please SignUp here!</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="loginlogoutform" onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel>EMAIL*</InputLabel>
           <Input

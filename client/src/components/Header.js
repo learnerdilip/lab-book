@@ -37,15 +37,21 @@ export default function Header() {
           </a>
         </Typography>
         <div id="loginsignupbutton">
-          <Button onClick={logoutuser} variant="outlined" color="default">
-            <Link to="/">logout</Link>
-          </Button>
-          <Button variant="outlined" color="default">
-            <Link to="/login">Login</Link>
-          </Button>
-          <Button variant="outlined" color="default">
-            <Link to="/signup">Signup</Link>
-          </Button>
+          {state.user.token && (
+            <Button onClick={logoutuser} variant="outlined" color="default">
+              <Link to="/">logout</Link>
+            </Button>
+          )}
+          {!state.user.token && (
+            <Button variant="outlined" color="default">
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
+          {!state.user.token && (
+            <Button variant="outlined" color="default">
+              <Link to="/signup">Signup</Link>
+            </Button>
+          )}
         </div>
       </Toolbar>
     </AppBar>

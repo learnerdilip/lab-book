@@ -45,7 +45,7 @@ const LoginContainer = () => {
   return (
     <div>
       <h2>Please Login here!</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="loginlogoutform" onSubmit={handleSubmit}>
         <FormControl>
           <InputLabel>EMAIL*</InputLabel>
           <Input
@@ -66,7 +66,9 @@ const LoginContainer = () => {
             onChange={handleChange}
           />
         </FormControl>
-        <Button type="submit">Submit</Button>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
