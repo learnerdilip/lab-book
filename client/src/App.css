@@ -114,24 +114,11 @@ form.loginlogoutform {
   border: cornflowerblue solid 0.5rem;
 }
 
-.daydiv {
-  width: 7vw;
-  height: 7vw;
-  margin: 1rem;
-  text-align: center;
-  font-size: x-large;
-  background-color: blue;
-}
-
 .calenderDay {
   text-decoration: none;
   /* padding: 3px; */
   color: royalblue;
   font-size: x-large;
-}
-
-.daydiv > a {
-  color: rgb(18, 8, 150);
 }
 
 .MuiPaper-root.MuiCard-root.daydiv.MuiPaper-elevation1.MuiPaper-rounded {
@@ -167,6 +154,15 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.daydiv.MuiButton-out
   border: rgb(225, 89, 65) solid 2px;
   font-weight: 900;
   /* box-shadow: #222275d6 0px 0px 1rem; */
+}
+
+.daydiv {
+  width: 6%;
+  height: 6%;
+  margin: 1rem;
+  text-align: center;
+  font-size: x-large;
+  background-color: blue;
 }
 
 .MuiButton-containedPrimary {
